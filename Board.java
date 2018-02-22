@@ -43,7 +43,7 @@ public class Board extends JPanel implements ActionListener{
     @Override
 
     public void actionPerformed(ActionEvent e) {
-        if(Gamestates.Play()) {
+        if(Menus.Play()) {
 
             ball.move();
             platform.move();
@@ -58,21 +58,23 @@ public class Board extends JPanel implements ActionListener{
 
         super.paintComponent(g);
 
-        g.setColor(Color.white);
+        g.setColor(Color.red);
 
-        if(Gamestates.Play()){
+        if(Menus.Play()){
             ball.paint(g);
             //bricks.paint(g);
             platform.paint(g);
         }
 
-        else if(Gamestates.Menu()){
-            g.setFont(new Font("Serif", Font.BOLD, 36));
-            printSimpleString("Welcome to Brick Breaker... Friend", getWidth(), 0, (int)getHeight()/3, g);
+        else if(Menus.Menu()){
+            g.setColor(Color.cyan);
+            g.setFont(new Font("Times New Roman", Font.BOLD, 36));
+            printSimpleString("BRICK BREAKER", getWidth(), 0, (int)getHeight()/3, g);
             printSimpleString("Press *S* to start.... Or don't. Either way is fine", getWidth(), 0, (int)(getHeight()*(2.0/3)), g);
         }
 
-        else if(Gamestates.Pause()){
+        else if(Menus.Pause()){
+            g.setColor(Color.orange);
             g.setFont(new Font("Serif", Font.BOLD, 36));
             printSimpleString("Why did you pause the game?", getWidth(), 0, (int)getHeight()/3, g);
             printSimpleString("Doesn't matter, just press *P* again to resume", getWidth(), 0, (int)(getHeight()*(2.0/3)), g);

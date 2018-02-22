@@ -4,7 +4,8 @@ import java.awt.event.KeyListener;
 
 public class Game extends JFrame implements KeyListener{
     private Board board;
-    private boolean rightPressed, leftPressed;
+    private boolean rightPressed;
+    private boolean leftPressed;
 
     public Game(){
 
@@ -30,20 +31,21 @@ public class Game extends JFrame implements KeyListener{
     }
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_SPACE){
-            Gamestates.showPlay();
-            Gamestates.hideMenu();
+        if(e.getKeyCode() == KeyEvent.VK_S){
+            Menus.showPlay();
+            Menus.hideMenu();
         }
         if(e.getKeyCode() == KeyEvent.VK_P){
-            Gamestates.togglePause();
-            Gamestates.togglePlay();
+            Menus.togglePause();
+            Menus.togglePlay();
         }
-        if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
-            Gamestates.hidePlay();
-            Gamestates.hidePause();
-            Gamestates.showMenu();
+        if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
+            Menus.hidePlay();
+            Menus.hidePause();
+            Menus.showMenu();
             board.gameRestart();
         }
+
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
             rightPressed = true;
         }
@@ -60,9 +62,11 @@ public class Game extends JFrame implements KeyListener{
             leftPressed = false;
         }
     }
+
     public boolean isRightPressed(){
         return rightPressed;
     }
+
     public boolean isLeftPressed(){
         return leftPressed;
     }

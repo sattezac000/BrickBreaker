@@ -1,8 +1,8 @@
-public class Gamestates {
+public class Menus {
 
-    private static boolean Play = true;
+    private static boolean Play = false;
     private static boolean Pause = false;
-    private static boolean Menu = false;
+    private static boolean Menu = true;
     private static boolean Victory = false;
     private static boolean Losing = false;
 
