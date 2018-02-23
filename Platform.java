@@ -5,7 +5,7 @@ public class Platform {
 
     private int x, y;
 
-    private final int WIDTH = 50, HEIGHT = 10;
+    final int WIDTH = 50, HEIGHT = 10;
 
     Board board;
     Game game;

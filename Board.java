@@ -13,7 +13,7 @@ public class Board extends JPanel implements ActionListener{
 
     Timer timer;
 
-    private final int EDGESPACE = 50;
+    private final int Border = 50;
 
 
     public Board(Game game) {
@@ -29,26 +29,36 @@ public class Board extends JPanel implements ActionListener{
 
     public void GameStart(){
         ball.setPosition(getWidth()/2, getHeight()/2);
-        platform.setPosition(EDGESPACE, getHeight() - EDGESPACE);
+        platform.setPosition(getWidth()/2, getHeight() - Border);
         timer = new Timer(1000 / 60, this);
         timer.start();
     }
 
     public void gameReset(){
         ball.setPosition(getWidth()/2, getHeight()/2);
+        platform.setPosition(getWidth()/2, getHeight() - Border);
     }
     public void gameRestart(){
         ball.setPosition(getWidth()/2, getHeight()/2);
+        platform.setPosition(getWidth()/2, getHeight() - Border);
     }
     @Override
 
     public void actionPerformed(ActionEvent e) {
-        if(Menus.Play()) {
+        if (Menus.Play()) {
 
             ball.move();
             platform.move();
 
         }
+        ball.checkCollision();
+
+        if(Menus.getLives() == 0 ){
+
+            Menus.Losing();
+
+        }
+
         repaint();
     }
 
@@ -62,7 +72,7 @@ public class Board extends JPanel implements ActionListener{
 
         if(Menus.Play()){
             ball.paint(g);
-            //bricks.paint(g);
+            brick.paint(g);
             platform.paint(g);
         }
 
@@ -80,11 +90,25 @@ public class Board extends JPanel implements ActionListener{
             printSimpleString("Doesn't matter, just press *P* again to resume", getWidth(), 0, (int)(getHeight()*(2.0/3)), g);
         }
 
+        else if(Menus.Losing()){
+            g.setColor(Color.RED);
+            g.setFont(new Font("Comic Sans", Font.ITALIC, 42));
+            printSimpleString("YOU LOST THE GAME", getWidth(), 0, (int)getHeight()/3, g);
+            printSimpleString("YOU MUST CLOSE THE GAME IF YOU WANT TO GO BACK TO THE MENU", getWidth(), 0, (int)(getHeight()*(2.0/3)), g);
+        }
+
+        else if(Menus.Victory()){
+            g.setColor(Color.GREEN);
+            g.setFont(new Font("Serif", Font.ITALIC, 36));
+            printSimpleString("You won my game... No idea how because the bricks don't exist", getWidth(), 0, (int)getHeight()/3, g);
+            printSimpleString("You can close the game whenever", getWidth(), 0, (int)(getHeight()*(2.0/3)), g);
+        }
+
     }
 
-    public int getEDGESPACE(){
+    public int getborder(){
 
-        return EDGESPACE;
+        return Border;
 
     }
 

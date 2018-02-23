@@ -5,6 +5,16 @@ public class Menus {
     private static boolean Menu = true;
     private static boolean Victory = false;
     private static boolean Losing = false;
+    private static Integer lives = new Integer(5);
+
+
+    public static Integer getLives(){
+        return lives;
+    }
+
+    public static void decreaseLives(){
+        lives--;
+    }
 
     public static boolean Play(){
         return Play;

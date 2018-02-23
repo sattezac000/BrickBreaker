@@ -17,6 +17,7 @@ public class Game extends JFrame implements KeyListener{
         board = new Board(this);
         add(board);
         pack();
+        addKeyListener(this);
         setLocationRelativeTo(null);
         board.GameStart();
 
@@ -39,10 +40,10 @@ public class Game extends JFrame implements KeyListener{
             Menus.togglePause();
             Menus.togglePlay();
         }
-        if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
-            Menus.hidePlay();
+        if(e.getKeyCode() == KeyEvent.VK_R){
+            Menus.showPlay();
             Menus.hidePause();
-            Menus.showMenu();
+            Menus.hideMenu();
             board.gameRestart();
         }
 

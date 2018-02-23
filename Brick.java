@@ -13,6 +13,11 @@ public class Brick {
     Ball ball;
     Bricks bricks;
 
+    public void setPosition(int x, int y){
+        this.x = x - Width/2;
+        this.y = y - Height/2;
+    }
+
     public void paint(Graphics g){
 
         g.fillRect(x, y, Width, Height);
